@@ -1,0 +1,9 @@
+
+
+
+# This code sets up a simple note-taking app where notes are stored in local storage and can be edited, added, or deleted.
+
+
+#It listens for click and key events to manage and update notes dynamically.
+
+
