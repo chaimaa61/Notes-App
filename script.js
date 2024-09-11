@@ -4,12 +4,13 @@ let notes = document.querySelectorAll(".input-box")
 
 function showNotes() {
     notesContainer.innerHTML = localStorage.getItem("notes")|| "";
-    attachEventListeners();
 }
 showNotes();
-function updateStorage() {
-    localStorage.setItem("notes", notesContainer.innerHTML)
-}
+ function updateStorage() {
+     localStorage.setItem("notes", notesContainer.innerHTML)
+ }
+
+
 
 createBtn.addEventListener("click",()=>{
     let inputBox = document.createElement("p");
@@ -18,7 +19,8 @@ createBtn.addEventListener("click",()=>{
     inputBox.setAttribute("contenteditable","true");
     img.src = "images/delete.png";
     notesContainer.appendChild(inputBox).appendChild(img) ;
-    updateStorage(); 
+    updateStorage();
+    
 })
 notesContainer.addEventListener("click", function(e){
     if(e.target.tagName === "IMG"){
@@ -35,18 +37,16 @@ notesContainer.addEventListener("click", function(e){
     }
 
 })
+notesContainer.addEventListener("keyup", (e) => {
+    if (e.target.classList.contains("input-box")) {
+        updateStorage();
+    }
+})
 
-function attachEventListeners() {
-    // Reattach event listeners to all input-box elements
-    notesContainer.querySelectorAll(".input-box" , "img").forEach(ele => {
-        ele.onkeyup = function () {
-            updateStorage();
-        };
-    });
-}
+
 
 document.addEventListener("keydown", event => {
-    if(event.key== "Enter"){
+    if(event.key=== "Enter"){
         document.execCommand("insertLineBreak");
         event.preventDefault();
     }
